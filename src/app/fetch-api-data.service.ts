@@ -5,7 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 // declare the api url - switch to CONNECTION_URI via Render before launch ?
-const apiUrl = 'mongodb+srv://raschkatie:NTOnnsRDOFMip0af@myflixdb.0lkcbns.mongodb.net/myFlixDB?retryWrites=true&w=majority&appName=myFlixDB/';
+const apiUrl = 'https://kr-my-flix.onrender.com/';
 
 @Injectable({
   providedIn: 'root'
@@ -155,7 +155,7 @@ export class UserRegistrationService {
   }
 
 // non-typed response extraction
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: any): any {
     const body = res;
     return body || { };
   }
