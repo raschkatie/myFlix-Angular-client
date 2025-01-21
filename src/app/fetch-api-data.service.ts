@@ -11,7 +11,7 @@ const apiUrl = 'https://kr-my-flix.onrender.com/';
   providedIn: 'root'
 })
 
-export class UserRegistrationService {
+export class FetchApiDataService {
   // inject the HttpClient module to the constructor params
   // this will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {
@@ -37,7 +37,7 @@ export class UserRegistrationService {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies', {headers: new HttpHeaders(
       {
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       })}).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
@@ -48,7 +48,7 @@ export class UserRegistrationService {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/' + title, {headers: new HttpHeaders(
       {
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       }
     )}).pipe(
       map(this.extractResponseData),
@@ -60,7 +60,7 @@ export class UserRegistrationService {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/genre/' + name, {headers: new HttpHeaders(
       {
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       }
     )}).pipe(
       map(this.extractResponseData),
@@ -72,7 +72,7 @@ export class UserRegistrationService {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'users/' + username, {headers: new HttpHeaders(
       {
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       }
     )}).pipe(
       map(this.extractResponseData),
@@ -84,7 +84,7 @@ export class UserRegistrationService {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'users/' + username + '/favorites', {headers: new HttpHeaders(
       {
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       }
     )}).pipe(
       map(this.extractResponseData),
@@ -96,7 +96,7 @@ export class UserRegistrationService {
     const token = localStorage.getItem('token');
     return this.http.post(apiUrl + 'users/' + username + '/favorites/' + title, {headers: new HttpHeaders(
       {
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       }
     )}).pipe(
       map(this.extractResponseData),
@@ -108,7 +108,7 @@ export class UserRegistrationService {
     const token = localStorage.getItem('token');
     return this.http.put(apiUrl + 'users/' + username, {headers: new HttpHeaders(
       {
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       }
     )}).pipe(
       map(this.extractResponseData),
@@ -120,7 +120,7 @@ export class UserRegistrationService {
     const token = localStorage.getItem('token');
     return this.http.delete(apiUrl + 'users/' + username, {headers: new HttpHeaders(
       {
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       }
     )}).pipe(
       map(this.extractResponseData),
@@ -132,7 +132,7 @@ export class UserRegistrationService {
     const token = localStorage.getItem('token');
     return this.http.delete(apiUrl + 'users/' + username + '/favorites/' + title, {headers: new HttpHeaders(
       {
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       }
     )}).pipe(
       map(this.extractResponseData),
