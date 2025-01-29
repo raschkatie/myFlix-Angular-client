@@ -1,0 +1,98 @@
+<div>
+    <nav><button mat-button color='primary' (click)='redirectMovies()'>Home</button></nav>
+</div>
+
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Your Profile</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form>
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]='userData.Username'
+            placeholder='Username'
+            type='text'
+            name='newUsername'
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]='userData.newPassword'
+            placeholder='********'
+            type='password'
+            name='Password'
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]='userData.Email'
+            placeholder='Email'
+            type='email'
+            name='Email'
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]='userData.Birthday'
+            placeholder='Birthday'
+            type='date'
+            name='Birthday'
+          />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        (click)='editUser()'
+        color='primary'
+      >
+        Update Info
+      </button>
+      <button
+        mat-raised-button
+        (click)='deleteAccount()'
+        color='warn'
+      >
+        Delete Account
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Favorite Movies</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+        <div *ngIf="favoriteMovies.length === 0">
+            <p>You haven't picked any favorite movies yet.</p>
+        </div>
+        
+        <div *ngFor='let movie of favoriteMovies'>
+            <mat-card>
+            <img src={{movie.ImagePath}} alt= {{movie.Title}} />
+
+            <mat-card-title>{{ movie.Title }}</mat-card-title>
+            <mat-card-actions>
+                <button
+                mat-raised-button
+                (click)='removeFavorite(movie._id)'
+                color='warn'
+                >
+                Remove
+                </button>
+            </mat-card-actions>
+            </mat-card>
+        </div>
+    </mat-card-content>
+  </mat-card>
+  

@@ -23,10 +23,4 @@ export class WelcomePageComponent {
     });
   }
 
-  // openMoviesDialog(): void {
-  //   this.dialog.open(MovieCardComponent, {
-  //     width: '500px'
-  //   });
-  // }
-
 }

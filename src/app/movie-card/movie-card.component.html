@@ -1,3 +1,10 @@
+<div>
+    <nav>
+        <button mat-button color='primary' (click)='redirectProfile()'>Profile</button>
+        <button mat-button color='primary' (click)='logout()'>Logout</button>
+    </nav>
+</div>
+
 <div style='display: flex;'>
     <mat-card *ngFor='let movie of movies;' style='flex: 1 1 auto;'>
         <mat-card-header>
@@ -9,22 +16,27 @@
             <button
                 mat-button
                 color='primary'
+                (click)='openDialog("genre", movie.Genre, movie.Title)'
             >
                 Genre
             </button>
             <button
                 mat-button
                 color='primary'
+                (click)='openDialog("director", movie.Director, movie.Title)'
             >
                 Director
             </button>
             <button
                 mat-button
                 color='primary'
+                (click)='openDialog("summary", movie.Description, movie.Title)'
             >
                 Synopsis
             </button>
-            <mat-icon>favorite_border</mat-icon>
+            <mat-icon (click)="modifyFavoriteMovies(movie)">
+                {{ isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}
+              </mat-icon>
         </mat-card-actions>
     </mat-card>
 </div>
