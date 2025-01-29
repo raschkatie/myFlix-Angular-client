@@ -32,13 +32,17 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(['movies']);
   }
 
+  logout(): void {
+    this.router.navigate(['welcome']);
+    localStorage.removeItem('user');
+  }
+
   getUserData(): Observable<any> {
     const username = this.userData.Username;
     return this.fetchApiData.getUser(username).pipe(
       map((resp: any) => {
         this.userData = resp;
         this.favoriteMovies = resp.FavoriteMovies || [];
-        console.log('Updated user data: ', this.userData);
         return resp;
       })
     );
@@ -103,9 +107,7 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  getFavoriteMovies(): void {
-    console.log('Favorite movies in profile: ', this.favoriteMovies);
-  
+  getFavoriteMovies(): void {  
     if (!this.userData.FavoriteMovies) {
       console.error('Favorite movies data is undefined.');
       return;

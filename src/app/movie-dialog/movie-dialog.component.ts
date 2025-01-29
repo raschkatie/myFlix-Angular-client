@@ -17,13 +17,9 @@ export class MovieDialogComponent implements OnInit {
   }
 
   constructor(@Inject(MAT_DIALOG_DATA) public injectedData: any) {
-    console.log('Injected Data:', injectedData);
-    
+  
     this.type = injectedData.type;
     this.data = injectedData.data;
     this.movie = injectedData.movie;
-
-    console.log('TYPE: ', this.type);
-    console.log('DATA: ', this.data);
   }
 }

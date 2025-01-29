@@ -1,10 +1,15 @@
 <div>
-    <nav><button mat-button color='primary' (click)='redirectMovies()'>Home</button></nav>
+    <nav>
+      <button mat-button class='nav-button' (click)='redirectMovies()'>Home</button>
+      <button mat-button class='nav-button' (click)='logout()'>Logout</button>
+    </nav>
 </div>
 
-<mat-card>
+<div class='profile-edit'>
+  <h2>Your Profile</h2>
+  <mat-card>
     <mat-card-header>
-      <mat-card-title>Your Profile</mat-card-title>
+      <p>Edit your profile information below:</p>
     </mat-card-header>
     <mat-card-content>
       <form>
@@ -66,33 +71,34 @@
       </button>
     </mat-card-actions>
   </mat-card>
+</div>
   
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Favorite Movies</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+<div class='favorite-movies'>
+  <h2>Your Favorite Movies</h2>
+
+  <div style='display: flex;'>
+    <mat-card *ngFor='let movie of favoriteMovies' style='flex: 1 1 auto;' class='movie-card'>
 
         <div *ngIf="favoriteMovies.length === 0">
             <p>You haven't picked any favorite movies yet.</p>
         </div>
         
-        <div *ngFor='let movie of favoriteMovies'>
-            <mat-card>
-            <img src={{movie.ImagePath}} alt= {{movie.Title}} />
-
+        <div>
+          <mat-card-header>
             <mat-card-title>{{ movie.Title }}</mat-card-title>
-            <mat-card-actions>
-                <button
-                mat-raised-button
-                (click)='removeFavorite(movie._id)'
-                color='warn'
-                >
-                Remove
-                </button>
-            </mat-card-actions>
-            </mat-card>
+          </mat-card-header>
+          <img class='movie-cover' src={{movie.ImagePath}} alt={{movie.Title}} />
+          <mat-card-actions>
+              <button
+              mat-raised-button
+              (click)='removeFavorite(movie._id)'
+              color='warn'
+              >
+              Remove
+              </button>
+          </mat-card-actions>
         </div>
-    </mat-card-content>
-  </mat-card>
+    </mat-card>
+  </div>
+</div>
   
