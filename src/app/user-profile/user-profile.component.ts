@@ -22,12 +22,15 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.userData.Birthday) {
+      this.userData.Birthday = this.formatDate(this.userData.Birthday);
+    }
+  
     this.getUserData().subscribe((resp) => {
       this.getFavoriteMovies();
     });
   }
   
-
   redirectMovies(): void {
     this.router.navigate(['movies']);
   }
@@ -41,6 +44,9 @@ export class UserProfileComponent implements OnInit {
     const username = this.userData.Username;
     return this.fetchApiData.getUser(username).pipe(
       map((resp: any) => {
+        if (resp.Birthday) {
+          resp.Birthday = this.formatDate(resp.Birthday);
+        }
         this.userData = resp;
         this.favoriteMovies = resp.FavoriteMovies || [];
         return resp;
@@ -48,64 +54,52 @@ export class UserProfileComponent implements OnInit {
     );
   }
   
+  formatDate(dateString: string): string {
+    if (!dateString) return '';
+    return dateString.split('T')[0];
+  }
 
   editUser(): void {
-    const username = this.userData.Username;
-    const updatedUser: any = {};
-  
+    const currentUsername = this.userData.Username; 
+    const updatedUser: any = { ...this.userData };
+    
     if (this.userData.newUsername) {
       updatedUser.Username = this.userData.newUsername;
     }
-    if (this.userData.newPassword) {
-      updatedUser.Password = this.userData.newPassword;
-    }
-    if (this.userData.Email) {
-      updatedUser.Email = this.userData.Email;
-    }
-    if (this.userData.Birthday) {
-      updatedUser.Birthday = this.userData.Birthday;
-    }
   
-    if (Object.keys(updatedUser).length === 0) {
-      this.snackBar.open('No changes detected.', 'OK', { duration: 2000 });
-      return;
-    }
+    this.fetchApiData.editUser(currentUsername, updatedUser).subscribe(
+      (resp: any) => {  
+        localStorage.setItem('user', JSON.stringify(resp));
+        this.userData = resp;        
+        this.snackBar.open('User information updated successfully!', 'OK', { duration: 2000 });
   
-    this.fetchApiData.editUser(username, updatedUser).subscribe(
-      (resp: any) => {
         if (updatedUser.Username) {
-          this.userData.Username = updatedUser.Username;
+          this.router.navigate([`/users/${updatedUser.Username}`]);
         }
-        localStorage.setItem('user', JSON.stringify({ ...this.userData, ...resp }));
-        this.userData = { ...this.userData, ...resp };
-  
-        this.snackBar.open('User information updated successfully!', 'OK', {
-          duration: 2000
-        });
       },
       (error: any) => {
-        console.error(error);
+        console.error("Error:", error);
       }
     );
   }
   
-  
-
   deleteAccount(): void {
     const confirmation = confirm('Are you sure you want to delete your account? This action cannot be undone.');
     if (confirmation) {
       const username = this.userData.Username;
       this.fetchApiData.deleteUser(username).subscribe(() => {
-        localStorage.clear();
-        this.router.navigate(['welcome']);
-        this.snackBar.open('Account deleted successfully.', 'OK', {
-          duration: 2000
-        });
-      }, (error: any) => {
-        console.error(error);
-      });
+          localStorage.clear();
+          this.router.navigate(['welcome']).then(() => {
+            this.snackBar.open('Account deleted successfully.', 'OK', { duration: 2000 });
+          });
+        },
+        (error) => {
+          console.error("Error:", error);
+        }
+      );
     }
   }
+  
 
   getFavoriteMovies(): void {  
     if (!this.userData.FavoriteMovies) {

@@ -14,7 +14,7 @@
         <mat-form-field>
           <input
             matInput
-            [(ngModel)]='userData.Username'
+            [(ngModel)]='userData.newUsername'
             placeholder='Username'
             type='text'
             name='newUsername'
@@ -24,8 +24,8 @@
         <mat-form-field>
           <input
             matInput
-            [(ngModel)]='userData.newPassword'
-            placeholder='********'
+            [(ngModel)]='userData.Password'
+            placeholder='New Password'
             type='password'
             name='Password'
             required
@@ -35,7 +35,7 @@
           <input
             matInput
             [(ngModel)]='userData.Email'
-            placeholder='Email'
+            placeholder='New Email'
             type='email'
             name='Email'
             required
@@ -45,7 +45,7 @@
           <input
             matInput
             [(ngModel)]='userData.Birthday'
-            placeholder='Birthday'
+            placeholder='New Birthday'
             type='date'
             name='Birthday'
           />
