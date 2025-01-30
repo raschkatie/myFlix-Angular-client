@@ -1,26 +1,38 @@
+// angular material settings --------
 
 @use '@angular/material' as mat;
 
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$myFlix-Angular-client-primary: mat.define-palette(mat.$indigo-palette);
-$myFlix-Angular-client-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$myFlix-Angular-client-primary: mat.define-palette(mat.$deep-purple-palette, 500, 300, 700); 
+$myFlix-Angular-client-accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400);
 
-// The warn palette is optional (defaults to red).
 $myFlix-Angular-client-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$myFlix-Angular-client-theme: mat.define-light-theme((
+$myFlix-Angular-client-theme: mat.define-dark-theme((
   color: (
     primary: $myFlix-Angular-client-primary,
     accent: $myFlix-Angular-client-accent,
     warn: $myFlix-Angular-client-warn,
   )
 ));
+
+@include mat.all-component-themes($myFlix-Angular-client-theme);
+
+// general settings --------
+
+html, body {
+  font-family: 'Poppins', sans-serif;
+  background-color: mat.get-color-from-palette($myFlix-Angular-client-accent, 900); 
+  color: white;
+}
+
+.dialog-title {
+  font-size: large;
+  font-weight: 700;
+  padding-left: 30px;
+  padding-top: 15px;
+}
 
 .movie-cover {
   object-fit: cover;
@@ -34,29 +46,60 @@ $myFlix-Angular-client-theme: mat.define-light-theme((
   display: flex;
   flex-direction: column;
   margin: 10px;
+  justify-content: space-between;
+  min-height: 525px;
+}
+
+mat-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding-left: 0 !important;
+  margin-bottom: 10px;
 }
 
 mat-card-title,
 mat-card-subtitle {
+  width: 100%;
+  display: block;
   text-align: center;
-  min-height: 25px;
+  margin: 0 auto;
 }
 
-.favorite-movies,
 .movie-list {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
   justify-content: center;
 }
 
-.nav-button {
-  color: white;
-  background-color: var(primary);
+.profile-button {
+  margin-left: 10px;
 }
 
-.movie-dialog-button {
-  color: red;
+#edit-instruction {
+  padding-left: 20px;
 }
 
+h2 {
+  padding: 10px;
+}
 
+// phone/smaller screen settings --------
 
-@include mat.all-component-themes($myFlix-Angular-client-theme);
+@media all and (max-width: 500px) {
+  .movie-list,
+  .favorite-movies div {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .movie-card {
+    width: 90%;
+    max-width: 400px;
+  }
+}

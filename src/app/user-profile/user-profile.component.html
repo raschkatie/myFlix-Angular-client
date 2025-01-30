@@ -8,9 +8,7 @@
 <div class='profile-edit'>
   <h2>Your Profile</h2>
   <mat-card>
-    <mat-card-header>
-      <p>Edit your profile information below:</p>
-    </mat-card-header>
+      <p id='edit-instruction'>Edit your profile information below:</p>
     <mat-card-content>
       <form>
         <mat-form-field>
@@ -59,6 +57,7 @@
         mat-raised-button
         (click)='editUser()'
         color='primary'
+        class='profile-button'
       >
         Update Info
       </button>
@@ -66,6 +65,7 @@
         mat-raised-button
         (click)='deleteAccount()'
         color='warn'
+        class='profile-button'
       >
         Delete Account
       </button>
@@ -76,7 +76,7 @@
 <div class='favorite-movies'>
   <h2>Your Favorite Movies</h2>
 
-  <div style='display: flex;'>
+  <div class='movie-list'>
     <mat-card *ngFor='let movie of favoriteMovies' style='flex: 1 1 auto;' class='movie-card'>
 
         <div *ngIf="favoriteMovies.length === 0">
@@ -92,7 +92,7 @@
               <button
               mat-raised-button
               (click)='removeFavorite(movie._id)'
-              color='warn'
+              color='primary'
               >
               Remove
               </button>
