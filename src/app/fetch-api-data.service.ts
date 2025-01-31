@@ -17,14 +17,12 @@ export class FetchApiDataService {
   }
 
   public userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http.post(`${apiUrl}users`, userDetails).pipe(
       catchError(this.handleError)
     );
   }
 
   public userLogin(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http.post(`${apiUrl}login`, userDetails).pipe(
       catchError(this.handleError)
     );
