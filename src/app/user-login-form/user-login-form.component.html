@@ -31,8 +31,12 @@
         mat-raised-button
         (click)='loginUser()'
         color='primary'
+        [disabled]="isLoading"
         >
-        Login
+        {{ isLoading ? 'Logging in...' : 'Login' }}
         </button>
     </mat-card-actions>
+    <p *ngIf='isLoading' style='text-align: center; margin-top: 10px;'>
+        Loading...
+    </p>
 </mat-card>
