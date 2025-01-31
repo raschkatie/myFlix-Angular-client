@@ -84,7 +84,11 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "outputPath": "dist/my-flix-angular-client",
+            "deleteOutputPath": false
+          }
         }
       }
     }
