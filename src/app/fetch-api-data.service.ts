@@ -4,7 +4,13 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-// declare the api url - switch to CONNECTION_URI via Render before launch ?
+/**
+ * This file is similar to the user endpoints in movie_api/index.js
+ * 
+ * Each function sends an HTTP request to an endpoint
+ * and verifies the user's identity using the API's JWT Strategies.
+ */
+
 const apiUrl = 'https://kr-my-flix.onrender.com/';
 
 @Injectable({
@@ -17,14 +23,12 @@ export class FetchApiDataService {
   }
 
   public userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http.post(`${apiUrl}users`, userDetails).pipe(
       catchError(this.handleError)
     );
   }
 
   public userLogin(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http.post(`${apiUrl}login`, userDetails).pipe(
       catchError(this.handleError)
     );
@@ -158,7 +162,6 @@ export class FetchApiDataService {
     );
   }
 
-// non-typed response extraction
   private extractResponseData(res: any): any {
     const body = res;
     return body || { };

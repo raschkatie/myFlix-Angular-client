@@ -91,6 +91,22 @@ h2 {
 // phone/smaller screen settings --------
 
 @media all and (max-width: 500px) {
+  #welcome-header {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 40px;
+  }
+  
+  .submit-button {
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 15%;
+  }
+  
   .movie-list,
   .favorite-movies div {
     display: flex;

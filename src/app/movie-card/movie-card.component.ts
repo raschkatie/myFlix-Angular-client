@@ -5,6 +5,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
 
+/**
+ * This is the component for the home page; it allows the user to view the
+ * list of movies, add movies to their list of favorites, and view each
+ * movie's details.
+ * 
+ * MovieCardComponent retrieves the full list of movies from the API,
+ * allows the user to add or remove a movie from their list of favorites,
+ * and opens dialog windows with different details of each movie.
+ */
+
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -26,15 +36,28 @@ export class MovieCardComponent {
     this.getMovies();
   }
 
+  /**
+   * Navigates to the user's profile page.
+   */
   redirectProfile(): void {
     this.router.navigate(['users/:userId']);
   }
 
+  /**
+   * Logs the user out of the app.
+   */
   logout(): void {
     this.router.navigate(['welcome']);
     localStorage.removeItem('user');
   }
 
+  /**
+   * Retrieves the full list of movies from the backend API
+   * and finds if the movie is included in the user's list of
+   * favorite movies.
+   * 
+   * @returns {void} - does not return a value
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((movies) => {
       this.movies = movies;
@@ -55,10 +78,21 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Checks to see if the movie is in the list of favorite movies.
+   * 
+   * @param movieId - the id number of the movie to check
+   * @returns {boolean} - returns 'true' or 'false' depending on if the movie is found in the list
+   */
   isFavorite(movieId: string): boolean {
     return this.favoriteMovies.includes(movieId.toString());
   }
 
+  /**
+   * 
+   * @param movie - the movie name to add or remove
+   * @returns {void} - does not return a value
+   */
   modifyFavoriteMovies(movie: any): void {
     const user = JSON.parse(localStorage.getItem('user') ?? '{}');
     const username = user.Username || '';
@@ -85,6 +119,15 @@ export class MovieCardComponent {
     }
   }
   
+  /**
+   * Opens a dialog window with movie information depending on which button
+   * the user clicked: Synopsis, Director, or Genre.
+   * 
+   * @param type - the type of data to retrieve (i.e. string, any, etc.)
+   * @param data - the data to retrieve
+   * @param movie - the movie name to display
+   * @returns {void} - does not return a value
+   */
   openDialog(type: string, data: any, movie: string): void {
     this.dialog.open(MovieDialogComponent, {
       data: { type, data, movie },

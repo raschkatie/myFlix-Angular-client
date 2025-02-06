@@ -4,6 +4,13 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
+/**
+ * This is the component for allowing the user to log in with an existing account.
+ * 
+ * UserLoginFormComponent renders a login form for the user to enter their 
+ * username and password, then communicates with the backend API to authenticate
+ * the user and navigate to the movie card view upon a successful login.
+ */
 
 @Component({
   selector: 'app-user-login-form',
@@ -25,6 +32,13 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Sends the user's credentials to the API.
+   * After a successful response, the login form closes
+   * and redirects the user to the home movies page.
+   * 
+   * @returns {void} - does not return a value
+   */
   loginUser(): void {
     this.isLoading = true;
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
