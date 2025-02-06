@@ -19,6 +19,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 export class UserRegistrationFormComponent implements OnInit {
 
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: ''};
+  isLoading = false;
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -35,6 +36,7 @@ export class UserRegistrationFormComponent implements OnInit {
      * @returns {void} - does not return a value
      */
     registerUser(): void {
+      this.isLoading = true;
       this.fetchApiData.userRegistration(this.userData).subscribe((result: string) => {
         this.dialogRef.close();
         this.snackBar.open('Account successfully created! Please log in.', 'OK', {
@@ -44,6 +46,9 @@ export class UserRegistrationFormComponent implements OnInit {
         this.snackBar.open('Error: Please try again', 'OK', {
           duration: 2000
         });
+      },
+      () => {
+        this.isLoading = false;
       });
     }
 }
