@@ -50,8 +50,13 @@
             mat-raised-button
             (click)='registerUser()'
             color='primary'
+            class='submit-button'
+            [disabled]='isLoading'
         >
-            Sign Up
+        {{ isLoading ? 'Submitting...' : 'Sign Up' }}
         </button>
     </mat-card-actions>
+    <p *ngIf='isLoading' style='text-align: center; margin-top: 10px;'>
+        Loading...
+    </p>
 </mat-card>

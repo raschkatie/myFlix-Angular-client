@@ -1,27 +1,20 @@
-# MyFlixAngularClient
+# myFlix Angular Client
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
+This is an application using my [Movie API](https://github.com/raschkatie/movie_api) that is build using Angular. Users are able to register a new account, log in, add or remove movies from their list of favorites, view and edit their profile, and log out.
 
-## Development server
+View the app [here](https://raschkatie.github.io/myFlix-Angular-app/)!
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Key Features
 
-## Code scaffolding
+- Welcome View: Users can log in or register an account.
+- Movie Card View: Users can view the full list of movies and view each movie's details.
+- User Profile View: Users can view/edit their account info, delete their account, and view their list of favorite movies.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Angular
+- Angular Material
+- TypeScript
+- Node.js
+- TypeDoc
+- GitHub Pages

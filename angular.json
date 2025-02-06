@@ -25,7 +25,8 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "baseHref": "/myFlix-Angular-client/"
           },
           "configurations": {
             "production": {
@@ -84,7 +85,11 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "outputPath": "dist/my-flix-angular-client",
+            "deleteOutputPath": false
+          }
         }
       }
     }
