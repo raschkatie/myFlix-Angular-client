@@ -11,7 +11,8 @@ import { map } from 'rxjs/operators';
  * and verifies the user's identity using the API's JWT Strategies.
  */
 
-const apiUrl = 'https://kr-my-flix.onrender.com/';
+// NEED PUBLIC IP
+const apiUrl = 'http://54.235.229.30:8080/';
 
 @Injectable({
   providedIn: 'root'
