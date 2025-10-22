@@ -38,9 +38,10 @@ export class UserRegistrationFormComponent implements OnInit {
     registerUser(): void {
       this.isLoading = true;
       this.fetchApiData.userRegistration(this.userData).subscribe((result: string) => {
+        this.isLoading = false;
         this.dialogRef.close();
         this.snackBar.open('Account successfully created! Please log in.', 'OK', {
-          duration: 2000
+          duration: 2000,
         });
       }, (result: string) => {
         this.snackBar.open('Error: Please try again', 'OK', {
