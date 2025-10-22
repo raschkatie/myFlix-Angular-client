@@ -1,6 +1,6 @@
 # myFlix Angular Client
 
-This is an application using my [Movie API](https://github.com/raschkatie/movie_api) that is build using Angular. Users are able to register a new account, log in, add or remove movies from their list of favorites, view and edit their profile, and log out.
+This is an application using my [Movie API](https://github.com/raschkatie/movie_api) that is built using Angular. Users are able to register a new account, log in, add or remove movies from their list of favorites, view and edit their profile, and log out.
 
 View the app [here](https://raschkatie.github.io/myFlix-Angular-app/)!
 
