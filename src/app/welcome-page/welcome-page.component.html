@@ -2,22 +2,24 @@
     <h1 id='welcome-header'>
       Welcome to myFlix!
     </h1>
-    <button
-      mat-raised-button
-      (click)='openUserRegistrationDialog()'
-      style='margin-right: 10px;'
-      color='primary'
-      class='submit-button'
-    >
-      Sign Up
-    </button>
-    <button
-      mat-raised-button
-      (click)='openUserLoginDialog()'
-      style='margin-right: 10px;'
-      color='primary'
-      class='submit-button'
-    >
-      Login
-    </button>
+    <div class='welcome-buttons'>
+      <button
+        mat-raised-button
+        (click)='openUserRegistrationDialog()'
+        style='margin-right: 10px;'
+        color='primary'
+        class='submit-button'
+      >
+        Sign Up
+      </button>
+      <button
+        mat-raised-button
+        (click)='openUserLoginDialog()'
+        style='margin-right: 10px;'
+        color='primary'
+        class='submit-button'
+      >
+        Login
+      </button>
+    </div>
 </div>
