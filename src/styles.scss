@@ -1,4 +1,4 @@
-// angular material settings --------
+// Angular Material Settings --------
 
 @use '@angular/material' as mat;
 
@@ -18,7 +18,7 @@ $myFlix-Angular-client-theme: mat.define-dark-theme((
 
 @include mat.all-component-themes($myFlix-Angular-client-theme);
 
-// general settings --------
+// General Settings --------
 
 html, body {
   font-family: 'Poppins', sans-serif;
@@ -86,7 +86,7 @@ mat-card-header,
   justify-content: center;
   text-align: center;
   width: 100%;
-  padding: 1rem 0 1rem 0 !important; // adds breathing room below the title
+  padding: 1rem 0 1rem 0 !important;
   margin-bottom: 10px;
   box-sizing: border-box;
 }
@@ -199,7 +199,6 @@ h2 {
 }
 
 .movie-card mat-card-actions mat-icon {
-  // margin-left: auto;
   color: #e0e0e0;
   cursor: pointer;
   transition: color 0.3s ease, transform 0.2s ease;
