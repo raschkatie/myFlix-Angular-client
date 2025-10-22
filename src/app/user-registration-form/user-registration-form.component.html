@@ -56,7 +56,7 @@
         {{ isLoading ? 'Submitting...' : 'Sign Up' }}
         </button>
     </mat-card-actions>
-    <p *ngIf='isLoading' style='text-align: center; margin-top: 10px;'>
-        Loading...
+    <p *ngIf='isLoading' style='text-align: center; margin-top: 10px;' class='loading-message'>
+        Creating your account... this may take a minute.
     </p>
 </mat-card>

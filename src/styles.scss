@@ -6,7 +6,6 @@
 
 $myFlix-Angular-client-primary: mat.define-palette(mat.$deep-purple-palette, 500, 300, 700); 
 $myFlix-Angular-client-accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400);
-
 $myFlix-Angular-client-warn: mat.define-palette(mat.$red-palette);
 
 $myFlix-Angular-client-theme: mat.define-dark-theme((
@@ -25,13 +24,119 @@ html, body {
   font-family: 'Poppins', sans-serif;
   background-color: mat.get-color-from-palette($myFlix-Angular-client-accent, 900); 
   color: white;
+  height: 100%;
+  margin: 0;
 }
 
-.dialog-title {
-  font-size: large;
+// --- Welcome Page Styling ---
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.welcome-container h1,
+#welcome-header {
+  font-size: 3rem;
   font-weight: 700;
-  padding-left: 30px;
-  padding-top: 15px;
+  margin-bottom: 2rem;
+  padding-top: 10%;
+  text-align: center;
+}
+
+.welcome-container button {
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem;
+}
+
+.welcome-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+
+// --- Dialog Styling ---
+
+.mat-dialog-container {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  overflow-x: hidden !important;
+}
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 2rem 2rem !important;
+  box-sizing: border-box;
+  overflow-x: hidden !important;
+}
+
+mat-card-header,
+.mat-mdc-card-header {
+  display: flex;
+  font-size: 22px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding: 1rem 0 1rem 0 !important; // adds breathing room below the title
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+mat-card-title,
+mat-card-subtitle {
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+mat-form-field {
+  width: 100%;
+  max-width: 300px;
+}
+
+button {
+  align-self: center;
+}
+
+.mat-mdc-dialog-actions,
+.mat-dialog-actions {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.mat-mdc-dialog-actions button,
+.mat-dialog-actions button {
+  margin: 0 0.5rem !important;
+  padding: 0.6rem 1.5rem !important;
+  font-size: 1rem !important;
+  min-width: 100px;
+  text-align: center;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+mat-card-actions button {
+  font-size: 1rem !important;
+  min-width: 100px;
+  text-align: center;
 }
 
 .movie-cover {
@@ -50,29 +155,10 @@ html, body {
   min-height: 525px;
 }
 
-mat-card-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-  padding-left: 0 !important;
-  margin-bottom: 10px;
-}
-
-mat-card-title,
-mat-card-subtitle {
-  width: 100%;
-  display: block;
-  text-align: center;
-  margin: 0 auto;
-}
-
 .movie-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
   justify-content: center;
 }
 
@@ -88,23 +174,60 @@ h2 {
   padding: 10px;
 }
 
-// phone/smaller screen settings --------
+.mat-mdc-card-header, 
+.mat-card-header {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.loading-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  color: white;
+  font-style: italic;
+}
+
+.movie-card mat-card-actions {
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem 0.5rem 0.5rem;
+}
+
+.movie-card mat-card-actions mat-icon {
+  // margin-left: auto;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.movie-card mat-card-actions mat-icon:hover {
+  transform: scale(1.15);
+}
+
+
+// --- Small Screen Adjustments ---
 
 @media all and (max-width: 500px) {
   #welcome-header {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 40px;
+    font-size: 2rem;
+    padding-top: 20%;
   }
   
-  .submit-button {
-    justify-content: center;
-    align-items: center;
-    width: 70%;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    margin-left: 15%;
+  .welcome-container h1 {
+    font-size: 2.2rem;
+  }
+
+  .welcome-container button {
+    width: 80%;
+    margin-top: 10px;
   }
   
   .movie-list,
@@ -117,5 +240,11 @@ h2 {
   .movie-card {
     width: 90%;
     max-width: 400px;
+  }
+}
+
+@media all and (min-width: 500px) and (max-width: 750px) {
+  #welcome-header {
+    padding-top: 20%;
   }
 }
